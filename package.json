@@ -1,6 +1,7 @@
 {
   "name": "notepad",
   "version": "0.1.0",
+  "main": "index.js",
   "private": true,
   "dependencies": {
     "react": "^16.6.3",
@@ -8,10 +9,11 @@
     "react-scripts": "2.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "cross-env NODE_PATH=src react-scripts start",
+    "build": "cross-env NODE_PATH=src react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "electron": "cross-env ELECTRON_URL=http://127.0.0.1:3000 electron ."
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -21,5 +23,9 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "electron": "^3.0.9"
+  }
 }
