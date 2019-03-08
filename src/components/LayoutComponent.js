@@ -1,9 +1,10 @@
 import React from "react";
-import MenuComponent from "./MenuComponent";
 import "../App.css";
 import minimizeBtn from "./minimize.svg";
 import maximizeBtn from "./maximize.svg";
 import loadBtn from "./load.svg";
+import saveBtn from "./save.svg";
+import newBtn from "./new.svg";
 
 const { remote } = window.require("electron");
 
@@ -19,7 +20,39 @@ export default class Layout extends React.Component {
               width: "auto"
             }}
           >
-            <button className="btn-mu">
+            <button
+              className="btn-mu no-wide"
+              onClick={this.props.onNewFileClicked}
+            >
+              <img
+                src={newBtn}
+                alt="new"
+                style={{ width: 30, height: 30 }}
+                onDragStart={e => {
+                  e.preventDefault();
+                }}
+              />
+            </button>
+            <button
+              className="btn-mu no-wide"
+              onClick={this.props.onSaveClicked}
+            >
+              <img
+                src={saveBtn}
+                alt="save"
+                style={{
+                  width: 30,
+                  height: 30
+                }}
+                onDragStart={e => {
+                  e.preventDefault();
+                }}
+              />
+            </button>
+            <button
+              className="btn-mu no-wide"
+              onClick={this.props.onLoadClicked}
+            >
               <img
                 src={loadBtn}
                 alt="load"
@@ -30,7 +63,6 @@ export default class Layout extends React.Component {
                 onDragStart={e => {
                   e.preventDefault();
                 }}
-                onClick={this.props.onLoadClicked}
               />
             </button>
           </div>
@@ -47,6 +79,9 @@ export default class Layout extends React.Component {
             <button
               className="btn-mu close"
               onClick={() => {
+                if (this.props.onClose && !this.props.onClose()) {
+                  return;
+                }
                 remote.getCurrentWindow().close();
               }}
             >

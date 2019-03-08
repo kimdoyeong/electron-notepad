@@ -2,6 +2,8 @@
 
 # dependencies
 /node_modules
+/build
+/notepad-win32-x64
 /.pnp
 .pnp.js
 
