@@ -19,7 +19,10 @@ module.exports = {
       height: 800,
       minWidth: 400,
       minHeight: 150,
-      frame: false
+      frame: false,
+      webPreferences: {
+        nodeIntegration: true
+      }
     });
     window.loadURL(URL);
     window.on("closed", () => {
